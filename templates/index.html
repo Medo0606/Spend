@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+    <!-- chat gpt -->
+    <div class="d-flex justify-content-between border-bottom pb-2 mb-3">
+      <div>
+        <strong>Income</strong><br>
+          <span class="text-income" style="color: green;"> {{income | usd}} </span>
+      </div>
+      <div>
+        <strong>Expenses</strong><br>
+          <span class="text-expense" style="color: red;">{{expense | usd}}</span>
+      </div>
+      <div>
+        <strong>Total</strong><br>
+          <span style="color: white;">🧾{{ total | usd }}</span>
+      </div>
+    </div>
+    <!--end chatgpt-->
+    <h2 class="mt-4 mb-3 text-start">Recent Transactions</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th class="text-start">Category</th>
+                <th class="text-start">Note</th>
+                <th class="text-end">type</th>
+                <th class="text-end">account</th>
+                <th class="text-end">amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tr in trs%}
+            <tr>
+                <td class="text-start">{{tr.category}}</td>
+                <td class="text-start">📝{{ tr.note or ''}}</td>
+                <td class="text-end">{{tr.type}}</td>
+                <td class="text-end">{{tr.account}}</td>
+                <td class="text-end">{{tr.amount}}</td>
+                <!--chatgpt-->
+                <td class="text-end">
+                  <form action="/delete/{{ tr.id }}" method="post" style="display:inline;">
+                      <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                  </form>
+                </td>
+            <!--end chatgpt-->
+          {% endfor %}
+
+        </tbody>
+    </table>
+
+
+{% endblock %}
+

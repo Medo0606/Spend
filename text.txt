@@ -1,0 +1,25 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash TEXT NOT NULL,
+    cash NUMERIC NOT NULL);
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE UNIQUE INDEX username ON users (username);
+CREATE TABLE income (
+    id INTEGER PRIMARY KEY,
+    category TEXT NOT NULL,
+    account TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    user_id INTEGER,
+    note TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id));
+CREATE TABLE expense (
+    id INTEGER PRIMARY KEY,
+    category TEXT NOT NULL,
+    account TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    price INTEGER NOT NULL,
+    user_id INTEGER,
+    note TEXT NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id));

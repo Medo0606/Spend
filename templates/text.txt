@@ -1,0 +1,15 @@
+CREATE TABLE users (
+    id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+    username TEXT NOT NULL,
+    hash TEXT NOT NULL);
+CREATE TABLE sqlite_sequence(name,seq);
+CREATE UNIQUE INDEX username ON users (username);
+CREATE TABLE transactions (
+    id INTEGER PRIMARY KEY,
+    type TEXT NOT NULL,
+    category TEXT NOT NULL,
+    account TEXT NOT NULL,
+    amount INTEGER NOT NULL,
+    user_id INTEGER,
+    note TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id));

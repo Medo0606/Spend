@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    expense
+{% endblock %}
+
+{% block main %}
+    <form action="/expense" method="post">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                <input type="text" class="form-control" id="amount" autocomplete ="off" placeholder="Amount" name="amount">
+                <label for="amount">Amount</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                <select class="form-select" id="category" name="category">
+                    <option selected disabled>Category</option>
+                    {% for item in category %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category">choose category</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                <select class="form-select" id="account" name="account">
+                    <option selected disabled>Account</option>
+                    {% for item in account %}
+                    <option value="{{item}}"> {{ item }} </option>
+                    {% endfor %}
+                </select>
+                <label for="account">choose the methode</label>
+                </div>
+            </div>
+        </div>
+        <div class="input-group mt-4" >
+            <span class="input-group-text">Note</span>
+            <textarea class="form-control" placeholde="Optional" aria-label="With textarea" name="note"></textarea>
+        </div>
+        <button class="btn btn-primary mt-4" type="submit">Submit</button>
+    </form>
+
+{% endblock %}
+
+
+

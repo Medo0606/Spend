@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    income
+{% endblock %}
+
+{% block main %}
+    <form action="/income" method="post">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                <input type="text" class="form-control" autocomplete ="off" id="amount" placeholder="Amount" name="amount">
+                <label for="amount">Amount</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                <select class="form-select" id="category" name="category">
+                    <option selected disabled>Category</option>
+                    {% for item in category %}
+                        <option value="{{ item }}">{{ item }}</option>
+                    {% endfor %}
+                </select>
+                <label for="category">choose category</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                <select class="form-select" id="account" name="account">
+                    <option selected disabled>Account</option>
+                    {% for item in account %}
+                    <option value="{{item}}"> {{ item }} </option>
+                    {% endfor %}
+                </select>
+                <label for="account">choose the methode</label>
+                </div>
+            </div>
+        </div>
+        <div class="form-floating mt-4">
+            <textarea class="form-control" id="note" name="note" placeholder="Optional note" style="height: 100px;"></textarea>
+            <label for="note">Note (optional)</label>
+        </div>
+        <button class="btn btn-primary mt-4" type="submit">Submit</button>
+    </form>
+
+{% endblock %}
+
+
+
